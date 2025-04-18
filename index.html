@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <title>Hey_Lucky19 Live Stream</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -12,17 +16,20 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     .stream-container {
       position: relative;
-      width: 80%;
-      max-width: 960px;
-      aspect-ratio: 16 / 9;
+      width: 100%;
+      max-width: 100%;
+      height: 56.25vw; /* 16:9 ratio for full width */
+      max-height: 100vh;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 0 30px rgba(0, 123, 255, 0.6);
-      border: 3px solid rgba(0, 123, 255, 0.7);
+      box-shadow: 0 0 40px rgba(0, 123, 255, 0.8);
+      border: 3px solid rgba(0, 123, 255, 0.9);
       background: #1c1c1f;
     }
 
@@ -31,12 +38,83 @@
       width: 100%;
       height: 100%;
     }
+
+    /* Premium Telegram popup */
+    .telegram-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .popup-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+      width: 300px;
+      backdrop-filter: blur(20px);
+    }
+
+    .popup-box h2 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .popup-box a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #0088cc, #005f99);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .popup-box a:hover {
+      background: linear-gradient(135deg, #00aaff, #006699);
+    }
+
+    .close-btn {
+      margin-top: 15px;
+      cursor: pointer;
+      color: #ccc;
+      font-size: 14px;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
   <div class="stream-container">
     <div id="twitch-embed"></div>
+  </div>
+
+  <!-- Premium Telegram popup -->
+  <div class="telegram-popup" id="telegramPopup">
+    <div class="popup-box">
+      <h2>Join Our Telegram Channel</h2>
+      <a href="https://t.me/cricketclipsprovider" target="_blank">Join Now</a>
+      <div class="close-btn" onclick="document.getElementById('telegramPopup').style.display='none'">Maybe Later</div>
+    </div>
   </div>
 
   <script src="https://embed.twitch.tv/embed/v1.js"></script>
